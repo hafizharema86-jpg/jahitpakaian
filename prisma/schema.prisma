@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Lead {
+  id              Int      @id @default(autoincrement())
+  nama            String
+  nomorWhatsApp   String
+  jenisPakaian    String
+  jumlahPesanan   Int
+  catatan         String?
+  referensiDesain String?
+  createdAt       DateTime @default(now())
+}
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String
+  phone        String?
+  createdAt    DateTime @default(now())
+}
+
+model SiteSettings {
+  id               Int      @id @default(1)
+  websiteName      String   @default("jahitpakaian.com")
+  logoUrl          String?
+  heroTitle        String   @default("Jahit Pakaian Custom, Rapi & Berkualitas")
+  heroSubtitle     String   @default("Jasa Jahit & Konveksi Profesional")
+  heroDescription  String   @db.Text
+  whatsappNumber   String   @default("6281234567890")
+  email            String?
+  address          String?  @db.Text
+  operationalHours String?
+  heroImage        String?
+  heroCtaText      String   @default("Pesan via WA")
+  heroCtaLink      String   @default("https://wa.me/6281234567890")
+  updatedAt        DateTime @updatedAt
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String   @db.Text
+  price       String
+  icon        String?  @db.Text
+  tags        String   // comma separated tags e.g. "Potong Celana,Kecilkan Pinggang"
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Portfolio {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  category    String
+  imageUrl    String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id          Int      @id @default(autoincrement())
+  name        String
+  role        String
+  content     String   @db.Text
+  rating      Int      @default(5)
+  initials    String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model FAQ {
+  id          Int      @id @default(autoincrement())
+  question    String
+  answer      String   @db.Text
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
