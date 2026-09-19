@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # JahitPakaian.com - Landing Page & Lead Generation
 
 Proyek ini adalah sistem landing page sekaligus aplikasi penangkap prospek (lead generation) untuk bisnis jasa jahit pakaian profesional. Dibangun dengan memprioritaskan performa tinggi, desain premium modern, dan pengalaman pengguna (UX) yang sangat responsif, demi memaksimalkan konversi pelanggan melalui WhatsApp.
@@ -60,3 +61,6 @@ Jangan lupa untuk menyetel *Environment Variables* (`DATABASE_URL`) di *dashboar
 7. Sistem **menyimpan** data pengunjung ke database **MySQL** via Prisma.
 8. Sistem **menampilkan pesan konfirmasi** berhasil kepada pengunjung.
 9. Pelanggan otomatis **diarahkan ke WhatsApp** dengan format pesan yang sudah disiapkan berdasarkan isian form.
+=======
+# jahitpakaian
+>>>>>>> 06b80bdc387c389abfd7be3cb451705e138db9fd
