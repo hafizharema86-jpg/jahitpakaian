@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { getPortfolios, savePortfolio, deletePortfolio } from "../actions";
 
+import ImageUpload from "@/components/ImageUpload";
+
 export default function PortfoliosPage() {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -68,9 +70,11 @@ export default function PortfoliosPage() {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">URL Gambar</label>
-              <input type="text" className="w-full border-gray-200 shadow-sm rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#06371c]/20 focus:border-[#06371c] transition-all outline-none" 
-                value={editing.imageUrl || ""} onChange={e => setEditing({...editing, imageUrl: e.target.value})} placeholder="/portfolio-suit.jpg" required />
+              <ImageUpload
+                label="Foto Portofolio"
+                value={editing.imageUrl || ""}
+                onChange={(url) => setEditing({...editing, imageUrl: url})}
+              />
             </div>
             <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
               <button type="submit" className="bg-[#06371c] text-white px-8 py-3 rounded-xl font-semibold shadow-lg shadow-[#06371c]/20 hover:shadow-[#06371c]/40 hover:-translate-y-0.5 transition-all">Simpan</button>

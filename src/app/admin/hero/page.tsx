@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { getSiteSettings, updateSiteSettings } from "../actions";
 
+import ImageUpload from "@/components/ImageUpload";
+
 export default function SettingsPage() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -83,9 +85,11 @@ export default function SettingsPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Foto Hero (URL)</label>
-              <input type="text" className="w-full border-gray-200 shadow-sm rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#06371c]/20 focus:border-[#06371c] transition-all outline-none" 
-                value={data.heroImage || ""} onChange={e => setData({...data, heroImage: e.target.value})} placeholder="https://..." />
+              <ImageUpload
+                label="Foto Hero"
+                value={data.heroImage || ""}
+                onChange={(url) => setData({...data, heroImage: url})}
+              />
             </div>
           </div>
 
