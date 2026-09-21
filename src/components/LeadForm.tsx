@@ -1,10 +1,20 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function LeadForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    fetch("/api/auth/user/me")
+      .then(res => {
+        if (res.ok) setIsLoggedIn(true);
+        else setIsLoggedIn(false);
+      })
+      .catch(() => setIsLoggedIn(false));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -132,18 +142,27 @@ export default function LeadForm() {
           />
         </div>
 
-        <button 
-          type="submit" 
-          disabled={status === "loading" || status === "success"}
-          className="bg-[#06371c] hover:bg-[#0a4d29] text-white font-bold text-base py-4 rounded-xl transition-all mt-4 flex justify-center items-center gap-2 disabled:opacity-50 shadow-xl shadow-[#06371c]/20"
-        >
-          {status === "loading" ? "Mengirim Data..." : status === "success" ? "Berhasil Tersimpan!" : (
-            <>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-              Kirim & Lanjutkan ke WhatsApp
-            </>
-          )}
-        </button>
+        {isLoggedIn === false ? (
+          <a
+            href="/auth/login?redirect=whatsapp"
+            className="bg-[#06371c] hover:bg-[#0a4d29] text-white font-bold text-base py-4 rounded-xl transition-all mt-4 flex justify-center items-center gap-2 shadow-xl shadow-[#06371c]/20 text-center"
+          >
+            Login untuk Pesan via WA
+          </a>
+        ) : (
+          <button 
+            type="submit" 
+            disabled={status === "loading" || status === "success" || isLoggedIn === null}
+            className="bg-[#06371c] hover:bg-[#0a4d29] text-white font-bold text-base py-4 rounded-xl transition-all mt-4 flex justify-center items-center gap-2 disabled:opacity-50 shadow-xl shadow-[#06371c]/20"
+          >
+            {status === "loading" || isLoggedIn === null ? "Memproses..." : status === "success" ? "Berhasil Tersimpan!" : (
+              <>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Kirim & Lanjutkan ke WhatsApp
+              </>
+            )}
+          </button>
+        )}
 
         {status === "success" && (
           <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm text-center mt-2 font-medium">

@@ -344,8 +344,8 @@ export default function HomeClient({ settings, services, portfolios, testimonial
             
             <div className="flex flex-wrap gap-3 mb-12">
               <a 
-                href={settings.heroCtaLink || "/auth/login?redirect=whatsapp"} 
-                target={settings.heroCtaLink?.startsWith('http') ? "_blank" : "_self"} 
+                href="/auth/login?redirect=whatsapp" 
+                target="_self" 
                 rel="noopener noreferrer" 
                 className="bg-[#06371c] hover:bg-[#0a4d29] text-white px-7 py-3.5 rounded-lg font-semibold text-sm transition-all flex items-center gap-2.5 shadow-lg shadow-[#06371c]/20 ripple hover:scale-105 hover:shadow-xl"
                 {...hoverProps}
