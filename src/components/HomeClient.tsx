@@ -342,9 +342,17 @@ export default function HomeClient({ settings, services, portfolios, testimonial
             </p>
             
             <h1 className="font-serif text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-gray-900 leading-[1.15] tracking-tight mb-6">
-              {settings.heroTitle.split(',')[0]},{" "}
-              <br className="hidden md:block" />
-              <span className="animated-gradient-text">{settings.heroTitle.split(',')[1] ? settings.heroTitle.split(',')[1].trim() : ""}</span>
+              {settings.heroTitle.includes(',') ? (
+                <>
+                  {settings.heroTitle.split(',')[0]},{" "}
+                  <br className="hidden md:block" />
+                  <span className="animated-gradient-text">
+                    {settings.heroTitle.split(',').slice(1).join(',').trim()}
+                  </span>
+                </>
+              ) : (
+                settings.heroTitle
+              )}
             </h1>
             
             <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8 max-w-md reveal stagger-2 visible">
