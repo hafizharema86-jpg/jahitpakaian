@@ -543,7 +543,7 @@ export default function HomeClient({ settings, services, portfolios, testimonial
               <span className="text-[#06371c] font-semibold tracking-wider uppercase text-sm mb-4 block">Karya Kami</span>
               <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900">Portofolio Karya Atelier</h2>
             </div>
-            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="bg-white border border-gray-200 text-gray-900 px-6 py-3 rounded-full font-semibold text-sm hover:bg-gray-50 transition-colors shrink-0 hover:scale-105">
+            <a href="#" className="bg-white border border-gray-200 text-gray-900 px-6 py-3 rounded-full font-semibold text-sm hover:bg-gray-50 transition-colors shrink-0 hover:scale-105">
               Lihat Semua di Instagram →
             </a>
           </div>
