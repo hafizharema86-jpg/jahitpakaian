@@ -257,7 +257,16 @@ export default function HomeClient({ settings, services, portfolios, testimonial
             </svg>
           </div>
           <div className="flex flex-col">
-            <span className="font-sans font-bold text-xl tracking-tight text-[#1e293b]">{settings.websiteName.split('.')[0]}<span className="text-gray-400 font-normal">.{settings.websiteName.split('.')[1] || "com"}</span></span>
+            <span className="font-sans font-bold text-xl tracking-tight text-[#1e293b]">
+              {settings.websiteName.includes('.') ? (
+                <>
+                  {settings.websiteName.split('.')[0]}
+                  <span className="text-gray-400 font-normal">.{settings.websiteName.split('.').slice(1).join('.')}</span>
+                </>
+              ) : (
+                settings.websiteName
+              )}
+            </span>
             <span className="text-[10.5px] text-gray-500 font-medium -mt-1">{settings.heroSubtitle}</span>
           </div>
         </div>
