@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import HomeClient from "@/components/HomeClient";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: "JahitPakaian - Jasa Jahit Custom & Alterasi",
   description: "Melayani pembuatan pakaian custom, seragam kerja, seragam sekolah, hingga produksi konveksi.",
